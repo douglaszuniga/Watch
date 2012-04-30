@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="Watch.Digital"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Watch"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+    
+    <UserControl.Resources>
+        <local:Reloj x:Key="watchBrain" IsAnalog="False" />
+    </UserControl.Resources>
+    
+    <Grid x:Name="LayoutRoot" Background="White" DataContext="{Binding Source={StaticResource watchBrain}}">
+    	<Grid.RowDefinitions>
+    		<RowDefinition Height="0.438*"/>
+    		<RowDefinition Height="0.562*"/>
+    	</Grid.RowDefinitions>
+    	<Grid.ColumnDefinitions>
+    		<ColumnDefinition />
+    		<ColumnDefinition />
+			<ColumnDefinition />
+    	</Grid.ColumnDefinitions>
+		<TextBlock 
+			x:Name="txtHour" 
+			Text="{Binding Hour}" 
+            Margin="8,4,0,0" 
+            TextWrapping="Wrap" 
+			FontWeight="Bold"
+            FontSize="32"
+			Foreground="Black"
+            HorizontalAlignment="Center" Height="41" Grid.Row="1" VerticalAlignment="Top" />
+		<TextBlock 
+            x:Name="txtMinute"
+            Grid.Column="1"
+            Text="{Binding Minute}"
+            Margin="4,4,0,0"
+            TextWrapping="Wrap"
+            FontSize="32"
+			Foreground="Black"
+            HorizontalAlignment="Center" Height="41" Grid.Row="1" VerticalAlignment="Top" />
+		<TextBlock 
+            x:Name="txtSecond"
+            Grid.Column="2"
+            Text="{Binding Second}"
+            Margin="8,4,8,0"
+            TextWrapping="Wrap"
+            FontSize="32"
+			Foreground="Black"
+            HorizontalAlignment="Center" Height="41" Grid.Row="1" VerticalAlignment="Top" />
+		<TextBlock Height="25" Margin="8,4,8,0" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Black" Text="Hours" />
+		<TextBlock Grid.Column="1" Height="25" Margin="8,4,8,0" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="Minutes" Foreground="Black" />
+		<TextBlock Grid.Column="2" Height="25" Margin="8,4,8,0" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="Seconds" Foreground="Black" />
+    </Grid>
+</UserControl>

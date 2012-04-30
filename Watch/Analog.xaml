@@ -1,0 +1,47 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Watch"
+    mc:Ignorable="d"
+	x:Class="Watch.Analog"
+	d:DesignWidth="480" d:DesignHeight="696">
+	<UserControl.Resources>
+        <local:Reloj x:Key="watchBrain" IsAnalog="True"></local:Reloj> 
+	  <!--This storyboard is used to animate the angle of the rotation transformation-->
+	    <!--<Storyboard x:Name="clockStoryboard">
+	        <DoubleAnimation x:Name="hourAnimation"
+	          Storyboard.TargetName="hourHandTransformation"
+	          Storyboard.TargetProperty="Angle"
+	          Duration="12:0:0" RepeatBehavior="Forever" To="360"/>
+	        <DoubleAnimation x:Name="minuteAnimation"
+	          Storyboard.TargetName="minuteHandTransformation" 
+	          Storyboard.TargetProperty="Angle"
+	          Duration="1:0:0" RepeatBehavior="Forever" To="360" />
+	        <DoubleAnimation x:Name="secondAnimation"
+	          Storyboard.TargetName="secondHandTransformation" 
+	          Storyboard.TargetProperty="Angle"
+	          Duration="0:1:0" RepeatBehavior="Forever" To="360" />
+	    </Storyboard>-->
+        
+	</UserControl.Resources>
+	<Grid x:Name="LayoutRoot" Background="White" DataContext="{Binding Source={StaticResource watchBrain}}">
+		<Image Margin="8,8,8,0" Source="Img/analogWatch.jpg" Stretch="UniformToFill" Height="441" VerticalAlignment="Center" RenderTransformOrigin="0.491,0.497"/>
+		<Rectangle x:Name="hourHand" Fill="#FF0A1183" Height="80" Margin="229,263,0,0" Stroke="Black" VerticalAlignment="Top" RenderTransformOrigin="0.517,1.156" d:LayoutOverrides="VerticalAlignment" HorizontalAlignment="Left" Width="15" RadiusY="7.5" RadiusX="7.5">
+			<Rectangle.RenderTransform>
+				<RotateTransform x:Name="hourHandTransformation" Angle="{Binding Hour}" />
+			</Rectangle.RenderTransform>
+		</Rectangle>
+		<Rectangle x:Name="minuteHand" Fill="#FF8B1A3E" Height="100" Margin="232,243,0,0" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="10" RenderTransformOrigin="0.5,1.118" d:LayoutOverrides="VerticalAlignment" RadiusY="5" RadiusX="5">
+			<Rectangle.RenderTransform>
+				<RotateTransform x:Name="minuteHandTransformation" Angle="{Binding Minute}" />
+			</Rectangle.RenderTransform>
+		</Rectangle>
+		<Rectangle x:Name="secondHand" Fill="Black" Height="120" Margin="234,223,0,0" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="5" RenderTransformOrigin="0.567,1.106" d:LayoutOverrides="VerticalAlignment" RadiusY="2.5" RadiusX="2.5">
+			<Rectangle.RenderTransform>
+				<CompositeTransform Rotation="{Binding Second}" />
+			</Rectangle.RenderTransform>
+		</Rectangle>
+	</Grid>
+</UserControl>
